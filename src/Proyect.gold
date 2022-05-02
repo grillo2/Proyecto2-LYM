@@ -1,3 +1,71 @@
+import gold.**
+
+// Santiago no olvides las llaves :)
+
 procedure main(args:String[]) begin
-	print "Hello World"
+	var sc: java.util.Scanner(System.$in)
+	coder:= createCoder()
+	//decoder := createDecoder()
+	Utilities.test(coder)
+	
+end
+
+
+function createCoder():ITransducer begin
+	
+	In := ('a'‥'z')
+	Set2 := (0‥7) 
+	Set3 := ('0'‥'7')
+	Q:= {⟨start, pos, times⟩ | start in In ∪ {λ} , pos in Set2, times in {i|0≤i≤pos}} ∪ {0}
+	Out := In ∪ Set3 ∪ {'$'}
+	q₀:= ⟨λ, 7, 0⟩
+	F:= {⟨start, pos, times⟩ | start in In ∪ {λ} , pos in {7}, times in {i|0≤i≤pos}}
+	
+	return GDeterministicTransducer(Q,In,Out,q₀,F,δ,h,g)
+	
+	
+end
+
+h(q) := λ 
+
+function δ(q,s) begin
+	
+	return 0
+	
+end
+
+
+function δ(⟨start, pos, times⟩,s) begin
+	
+	if pos = 7 then return ⟨s,0,0⟩ 
+		elseif pos < 7 then
+		if s = start then return ⟨start, pos + 1, times + 1⟩	
+		else return ⟨start, pos+1, times⟩ 
+		end 
+		else return 0
+	end
+end
+
+function g(q,s) begin
+	
+	return ""
+	
+end
+
+function g(⟨start, pos, times⟩,s) begin
+	
+	return ""
+	
+	
+end
+
+
+
+
+
+
+
+
+function createDecoder():ITransducer  begin
+	
 end
