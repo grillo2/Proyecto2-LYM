@@ -1,7 +1,13 @@
 import gold.**
-
-// Santiago no olvides las llaves :)
-
+// ------------------------------
+// Valeria Caro Ramirez				|
+// v.caro@uniandes.edu.co			|
+//							
+// ------------------------------
+// Sofia Velasquez Marin				|
+// s.velasquezm2@uniandes.edu.co	|
+// 202113334						|						
+// ------------------------------
 procedure main(args:String[]) begin
 	var sc: java.util.Scanner(System.$in)
 	coder:= createCoder()
@@ -10,7 +16,7 @@ procedure main(args:String[]) begin
 	
 end
 
-
+//Coder ._.
 function createCoder():ITransducer begin
 	
 	In := ('a'‥'z')
@@ -27,13 +33,13 @@ function createCoder():ITransducer begin
 end
 
 h(q) := λ 
-
 function δ(q,s) begin
-	
 	return 0
-	
 end
 
+function g(q,s) begin
+	return ""
+end
 
 function δ(⟨start, pos, times⟩,s) begin
 	
@@ -46,26 +52,17 @@ function δ(⟨start, pos, times⟩,s) begin
 	end
 end
 
-function g(q,s) begin
-	
-	return ""
-	
-end
-
 function g(⟨start, pos, times⟩,s) begin
-	
-	return ""
-	
-	
+	if pos = 7 then return s
+		
+	elseif pos = 6 then return s = start ? "$"+(times+1) : (pos+1)+""+s+"$"+times
+		
+	else // pos < 6
+		return s = start ? "" : (pos+1)+""+s	
+	end
 end
 
-
-
-
-
-
-
-
+//Decoder ._.
 function createDecoder():ITransducer  begin
 	
 end
