@@ -58,8 +58,10 @@ public final class Proyect {
       sc=$invokeConstructor(java.util.Scanner.class,new Object[]{$invokeField(System.class,"in",true,null)});
       $line=13;
       Object coder=$fix(Proyect.createCoder());
+      $line=14;
+      Object decoder=$fix(Proyect.createDecoder());
       $line=15;
-      Utilities.test($cast(gold.structures.automaton.IAutomaton.class,coder));
+      Utilities.testCodeDecode($cast(gold.structures.automaton.ITransducer.class,coder),$cast(gold.structures.automaton.ITransducer.class,decoder));
     }
     catch (Throwable $throwable) {
       $rethrow($throwable,Proyect.class,"main",$line);
@@ -114,7 +116,7 @@ public final class Proyect {
       $line=30;
       $result=$invokeConstructor(GDeterministicTransducer.class,new Object[]{Q,In,Out,q_0,F,new GMethod(Proyect.class,"\u03B4"),new GMethod(Proyect.class,"h"),new GMethod(Proyect.class,"g")});
       if (true) break $try;
-      $line=33;
+      $line=32;
       $rethrow(new RuntimeException("The function \"createCoder()\" did not return a value."));
     }
     catch (Throwable $throwable) {
@@ -128,7 +130,7 @@ public final class Proyect {
     $try:try {
       $result="";
       if (true) break $try;
-      $line=35;
+      $line=34;
       $rethrow(new RuntimeException("The function \"h(q:Object)\" did not return a value."));
     }
     catch (Throwable $throwable) {
@@ -140,10 +142,10 @@ public final class Proyect {
     int $line=0;
     Object $result=null;
     $try:try {
-      $line=37;
+      $line=36;
       $result=0;
       if (true) break $try;
-      $line=38;
+      $line=37;
       $rethrow(new RuntimeException("The function \"\u03B4(q:Object,s:Object)\" did not return a value."));
     }
     catch (Throwable $throwable) {
@@ -155,10 +157,10 @@ public final class Proyect {
     int $line=0;
     Object $result=null;
     $try:try {
-      $line=41;
+      $line=40;
       $result="";
       if (true) break $try;
-      $line=42;
+      $line=41;
       $rethrow(new RuntimeException("The function \"g(q:Object,s:Object)\" did not return a value."));
     }
     catch (Throwable $throwable) {
@@ -174,34 +176,34 @@ public final class Proyect {
       Object start=$v14.next();
       Object pos=$v14.next();
       Object times=$v14.next();
-      $line=46;
+      $line=45;
       if ($opEqualY(pos,7)) {
-        $line=46;
+        $line=45;
         $result=GCollections.asList(s,0,0);
         if (true) break $try;
       }
       else {
-        $line=47;
+        $line=46;
         if ($opLesstY(pos,7)) {
-          $line=48;
+          $line=47;
           if ($opEqualY(s,start)) {
-            $line=48;
+            $line=47;
             $result=GCollections.asList(start,$opAdditY(pos,1),$opAdditY(times,1));
             if (true) break $try;
           }
           else {
-            $line=49;
+            $line=48;
             $result=GCollections.asList(start,$opAdditY(pos,1),times);
             if (true) break $try;
           }
         }
         else {
-          $line=51;
+          $line=50;
           $result=0;
           if (true) break $try;
         }
       }
-      $line=53;
+      $line=52;
       $rethrow(new RuntimeException("The function \"\u03B4(\u27E8start,pos,times\u27E9:java.lang.Iterable,s:Object)\" did not return a value."));
     }
     catch (Throwable $throwable) {
@@ -217,26 +219,26 @@ public final class Proyect {
       Object start=$v16.next();
       Object pos=$v16.next();
       Object times=$v16.next();
-      $line=56;
+      $line=55;
       if ($opEqualY(pos,7)) {
-        $line=56;
+        $line=55;
         $result=s;
         if (true) break $try;
       }
       else {
-        $line=58;
+        $line=57;
         if ($opEqualY(pos,6)) {
-          $line=58;
+          $line=57;
           $result=(($opEqualY(s,start))?($opAdditY("$",$opAdditY(times,1))):($opAdditY($opAdditY($opAdditY($opAdditY($opAdditY(pos,1),""),s),"$"),times)));
           if (true) break $try;
         }
         else {
-          $line=61;
+          $line=60;
           $result=(($opEqualY(s,start))?(""):($opAdditY($opAdditY($opAdditY(pos,1),""),s)));
           if (true) break $try;
         }
       }
-      $line=63;
+      $line=62;
       $rethrow(new RuntimeException("The function \"g(\u27E8start,pos,times\u27E9:java.lang.Iterable,s:Object)\" did not return a value."));
     }
     catch (Throwable $throwable) {
@@ -248,12 +250,163 @@ public final class Proyect {
     int $line=0;
     Object $result=null;
     $try:try {
-      $line=68;
+      $line=69;
+      Object Out=$fix($opIntvlY('a','z'));
+      $line=70;
+      Object Set2=$fix($opIntvlY(0,7));
+      $line=71;
+      Object Set3=$fix($opIntvlY('0','7'));
+      $line=72;
+      gold.structures.set.ISet $v17=$newSet();
+      $v18:for (Object start:GCollections.unmodifiableCollection($opUnionY(Out,GCollections.asSet("")))) {
+        for (Object pos:GCollections.unmodifiableCollection(Set2)) {
+          gold.structures.set.ISet $v19=$newSet();
+          int $v21=$int(0);
+          int $v22=$int(pos);
+          $v20:for (int i=$v21; i<=$v22; i++) {
+            $v19.add(i);
+          }
+          for (Object times:GCollections.unmodifiableCollection($v19)) {
+            for (Object read:GCollections.unmodifiableCollection(GCollections.asSet('N','L','S'))) {
+              $v17.add(GCollections.asList(start,pos,times,read));
+            }
+          }
+        }
+      }
+      Object Q=$fix($opUnionY($v17,GCollections.asSet(0)));
+      $line=74;
+      Object In=$fix($opUnionY($opUnionY(Out,Set3),GCollections.asSet('$')));
+      $line=75;
+      Object F=$fix(GCollections.asSet(GCollections.asList("",7,0,'N')));
+      $line=76;
+      Object q_0=$fix(GCollections.asList("",7,0,'N'));
+      $line=77;
+      $result=$invokeConstructor(GDeterministicTransducer.class,new Object[]{Q,In,Out,q_0,F,new GMethod(Proyect.class,"\u03B41"),new GMethod(Proyect.class,"g1"),new GMethod(Proyect.class,"h1")});
+      if (true) break $try;
+      $line=78;
       $rethrow(new RuntimeException("The function \"createDecoder()\" did not return a value."));
     }
     catch (Throwable $throwable) {
       $rethrow($throwable,Proyect.class,"createDecoder",$line);
     }
     return $cast(ITransducer.class,$result);
+  }
+  public static Object g1(Object q) {
+    int $line=0;
+    Object $result=null;
+    $try:try {
+      $result="";
+      if (true) break $try;
+      $line=80;
+      $rethrow(new RuntimeException("The function \"g1(q:Object)\" did not return a value."));
+    }
+    catch (Throwable $throwable) {
+      $rethrow($throwable,Proyect.class,"g1",$line);
+    }
+    return $result;
+  }
+  public static Object \u03B41(Object q, Object input) {
+    int $line=0;
+    Object $result=null;
+    $try:try {
+      $line=84;
+      $result=q;
+      if (true) break $try;
+      $line=85;
+      $rethrow(new RuntimeException("The function \"\u03B41(q:Object,input:Object)\" did not return a value."));
+    }
+    catch (Throwable $throwable) {
+      $rethrow($throwable,Proyect.class,"\u03B41",$line);
+    }
+    return $result;
+  }
+  public static Object h1(Object q, Object s) {
+    int $line=0;
+    Object $result=null;
+    $try:try {
+      $line=88;
+      $result="";
+      if (true) break $try;
+      $line=89;
+      $rethrow(new RuntimeException("The function \"h1(q:Object,s:Object)\" did not return a value."));
+    }
+    catch (Throwable $throwable) {
+      $rethrow($throwable,Proyect.class,"h1",$line);
+    }
+    return $result;
+  }
+  public static Object \u03B41(java.lang.Iterable $v23, Object input) {
+    int $line=0;
+    Object $result=null;
+    $try:try {
+      java.util.Iterator $v24=GCollections.unmodifiableCollection($v23).iterator();
+      Object start=$v24.next();
+      Object pos=$v24.next();
+      Object times=$v24.next();
+      Object read=$v24.next();
+      $line=92;
+      Object Num=$fix($opIntvlY('0','7'));
+      $line=93;
+      Object Letr=$fix($opIntvlY('a','z'));
+      $line=95;
+      Object inputValue=$fix((($opMembrY(input,Num))?($invokeMethod(Character.class,"getNumericValue",true,null,new Object[]{input})):(input)));
+      $line=98;
+      if (((((($bool(($opMembrY(input,Num)&&$opEqualY(read,'N')))||$bool(($opMembrY(input,Letr)&&$opEqualY(read,'L'))))||$bool(($opEqualY(input,'$')&&!$opEqualY(read,'L'))))||$bool(($opEqualY(read,'S')&&!$opEqualY(inputValue,times))))||$bool((($opLesstY(pos,7)&&$opEqualY(read,'N'))&&$opEqualY(input,start))))||$bool($opGreatY(times,pos)))) {
+        $line=104;
+        $result=0;
+        if (true) break $try;
+      }
+      $line=107;
+      if ($opEqualY(input,'$')) {
+        $line=107;
+        $result=GCollections.asList(start,7,$opAdditY(times,$opSubtrY(7,pos)),'S');
+        if (true) break $try;
+      }
+      else {
+        $line=108;
+        if (($opEqualY(pos,7)&&$opEqualY(read,'N'))) {
+          $line=108;
+          $result=GCollections.asList(input,0,0,'L');
+          if (true) break $try;
+        }
+        else {
+          $line=109;
+          if (($opLesstY(pos,7)&&$opEqualY(read,'L'))) {
+            $line=110;
+            Object value=$fix($opSubtrY(inputValue,$opAdditY(pos,1)));
+            $line=111;
+            $result=(($opGreatY(value,0))?(GCollections.asList(start,$opAdditY(pos,value),$opAdditY(times,value),'N')):(GCollections.asList(start,pos,times,'N')));
+            if (true) break $try;
+          }
+          else {
+            $line=112;
+            if (($opLesstY(pos,7)&&$opEqualY(read,'N'))) {
+              $line=112;
+              $result=GCollections.asList(start,$opAdditY(pos,1),times,'L');
+              if (true) break $try;
+            }
+            else {
+              $line=113;
+              if ($opEqualY(read,'S')) {
+                $line=113;
+                $result=GCollections.asList("",7,0,'N');
+                if (true) break $try;
+              }
+              else {
+                $line=114;
+                $result=0;
+                if (true) break $try;
+              }
+            }
+          }
+        }
+      }
+      $line=116;
+      $rethrow(new RuntimeException("The function \"\u03B41(\u27E8start,pos,times,read\u27E9:java.lang.Iterable,input:Object)\" did not return a value."));
+    }
+    catch (Throwable $throwable) {
+      $rethrow($throwable,Proyect.class,"\u03B41",$line);
+    }
+    return $result;
   }
 }

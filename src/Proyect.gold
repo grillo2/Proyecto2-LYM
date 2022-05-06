@@ -11,8 +11,8 @@ import gold.**
 procedure main(args:String[]) begin
 	var sc: java.util.Scanner(System.$in)
 	coder:= createCoder()
-	//decoder := createDecoder()
-	Utilities.test(coder)
+	decoder := createDecoder()
+	Utilities.testCodeDecode (coder, decoder)
 	
 end
 
@@ -28,7 +28,6 @@ function createCoder():ITransducer begin
 	F:= {⟨start, pos, times⟩ | start in In ∪ {λ} , pos in {7}, times in {i|0≤i≤pos}}
 	
 	return GDeterministicTransducer(Q,In,Out,q₀,F,δ,h,g)
-	
 	
 end
 
@@ -63,6 +62,58 @@ function g(⟨start, pos, times⟩,s) begin
 end
 
 //Decoder ._.
-function createDecoder():ITransducer  begin
+
+
+function createDecoder():ITransducer begin
 	
+	Out:=('a'‥ 'z')
+	Set2:=(0‥7) 
+	Set3 := ('0'‥'7')
+	Q:= {⟨start,pos,times,read⟩|start in Out ∪ {λ}, pos in Set2, times in {i|0≤i≤pos}, read in {'N','L','S'}} ∪ {0}
+	// read es lo que lei anteriormente : 'L' es una letra ; 'N' es un numero ; 'S' es el $
+	In:= Out ∪ Set3 ∪ {'$'}
+	F:= {⟨λ,7,0,'N'⟩}
+	q₀ := ⟨λ,7,0,'N'⟩
+	return 	GDeterministicTransducer(Q,In,Out,q₀,F,δ1,g1,h1)
 end
+
+g1(q):= λ
+
+	
+function δ1(q,input) begin
+	return q
+end
+
+function h1(q,s) begin
+	return ""
+end
+
+function δ1(⟨start,pos,times,read⟩,input) begin
+	Num:=('0'‥'7')
+	Letr:=('a'‥ 'z')
+	
+	inputValue := input ∈ Num ? Character.getNumericValue(input) : input
+	
+	//Errores posibles
+	if (input ∈ Num and read = 'N') or //Si estoy en un numero y anteriormente lei un numero
+		(input ∈ Letr and read = 'L') or //Si estoy en una letra y anteriormente lei una letra
+		(input = '$' and read ≠ 'L') or //Si estoy en $ y anteriormente no lei una letra
+		(read = 'S' and inputValue ≠ times) or // Si anteriormente lei el $ y el numero en el que estoy no es igual al numero de ocurrencias
+		(pos<7 and read = 'N' and input = start) or // Si anteriormente lei un numero, no he terminado de leer antes del $ y encuentro el mismo start symbol 
+		(times > pos)
+		then return 0 end
+
+	
+	if input = '$' then return ⟨start,7,times+(7-pos),'S'⟩
+	elseif pos = 7 and read = 'N' then return ⟨input,0,0,'L'⟩
+	elseif pos<7 and read = 'L' then
+		value = inputValue-(pos+1) 
+		return  value > 0 ? ⟨start,pos+value,times + value,'N'⟩ : ⟨start,pos,times,'N'⟩
+	elseif pos<7 and read = 'N' then return ⟨start,pos+1,times,'L'⟩
+	elseif read = 'S' then return ⟨λ,7,0,'N'⟩
+	else return 0
+	end
+end
+
+
+
