@@ -409,4 +409,68 @@ public final class Proyect {
     }
     return $result;
   }
+  public static Object h1(java.lang.Iterable $v25, Object input) {
+    int $line=0;
+    Object $result=null;
+    $try:try {
+      java.util.Iterator $v26=GCollections.unmodifiableCollection($v25).iterator();
+      Object start=$v26.next();
+      Object pos=$v26.next();
+      Object times=$v26.next();
+      Object read=$v26.next();
+      $line=119;
+      Object Num=$fix($opIntvlY('0','7'));
+      $line=120;
+      Object Letr=$fix($opIntvlY('a','z'));
+      $line=122;
+      Object inputValue=$fix((($opMembrY(input,Num))?($invokeMethod(Character.class,"getNumericValue",true,null,new Object[]{input})):(input)));
+      $line=125;
+      if (((((($bool(($opMembrY(input,Num)&&$opEqualY(read,'N')))||$bool(($opMembrY(input,Letr)&&$opEqualY(read,'L'))))||$bool(($opEqualY(input,'$')&&!$opEqualY(read,'L'))))||$bool(($opEqualY(read,'S')&&!$opEqualY(inputValue,times))))||$bool((($opLesstY(pos,7)&&$opEqualY(read,'N'))&&$opEqualY(input,start))))||$bool($opGreatY(times,pos)))) {
+        $line=131;
+        $result="";
+        if (true) break $try;
+      }
+      $line=134;
+      if (($opEqualY(pos,7)&&$opEqualY(read,'N'))) {
+        $line=134;
+        $result=input;
+        if (true) break $try;
+      }
+      else {
+        $line=136;
+        if (($opLesstY(pos,7)&&$opEqualY(read,'L'))) {
+          $line=136;
+          $result="";
+          if (true) break $try;
+        }
+        else {
+          $line=139;
+          if (($opLesstY(pos,7)&&$opEqualY(read,'N'))) {
+            $line=139;
+            $result=(($opEqualY(input,start))?(""):(input));
+            if (true) break $try;
+          }
+          else {
+            $line=142;
+            if ($opEqualY(read,'S')) {
+              $line=142;
+              $result="";
+              if (true) break $try;
+            }
+            else {
+              $line=148;
+              $result="";
+              if (true) break $try;
+            }
+          }
+        }
+      }
+      $line=151;
+      $rethrow(new RuntimeException("The function \"h1(\u27E8start,pos,times,read\u27E9:java.lang.Iterable,input:Object)\" did not return a value."));
+    }
+    catch (Throwable $throwable) {
+      $rethrow($throwable,Proyect.class,"h1",$line);
+    }
+    return $result;
+  }
 }

@@ -115,5 +115,44 @@ function δ1(⟨start,pos,times,read⟩,input) begin
 	end
 end
 
+function h1 (⟨start,pos,times,read⟩,input) begin
+	Num:=('0'‥'7')
+	Letr:=('a'‥ 'z')
+	
+	inputValue := input ∈ Num ? Character.getNumericValue(input) : input
+	
+	// Si entra en alguno de los casos de error debe devolver vacio
+	if (input ∈ Num and read = 'N') or //Si estoy en un numero y anteriormente lei un numero
+		(input ∈ Letr and read = 'L') or //Si estoy en una letra y anteriormente lei una letra
+		(input = '$' and read ≠ 'L') or //Si estoy en $ y anteriormente no lei una letra
+		(read = 'S' and inputValue ≠ times) or // Si anteriormente lei el $ y el numero en el que estoy no es igual al numero de ocurrencias
+		(pos<7 and read = 'N' and input = start) or // Si anteriormente lei un numero, no he terminado de leer antes del $ y encuentro el mismo start symbol 
+		(times > pos)
+		then return "" end
+			
+	
+	if pos = 7 and read = 'N' then return input // Retorna la primera letra de cada bloque
+		
+	elseif pos < 7 and read = 'L' then return ""
+
+		
+	elseif pos < 7 and read = 'N' then return input = start ? "" : input
+		
+		
+	elseif read = 'S' then return ""
+	
+	
+		
+	
+		
+	else return ""
+		
+	end
+end
+
+
+
+
+
 
 
