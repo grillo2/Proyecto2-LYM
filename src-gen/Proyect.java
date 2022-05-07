@@ -351,49 +351,49 @@ public final class Proyect {
       $line=95;
       Object inputValue=$fix((($opMembrY(input,Num))?($invokeMethod(Character.class,"getNumericValue",true,null,new Object[]{input})):(input)));
       $line=99;
-      if ((((((($bool(($opMembrY(input,Num)&&$opEqualY(read,'N')))||$bool(($opMembrY(input,Letr)&&$opEqualY(read,'L'))))||$bool(($opEqualY(input,'$')&&!$opEqualY(read,'L'))))||$bool(($opEqualY(read,'S')&&!$opEqualY(inputValue,times))))||$bool((($opLesstY(pos,7)&&$opEqualY(read,'N'))&&$opEqualY(input,start))))||$bool($opGreatY(times,pos)))||$bool((($opLesstY(pos,7)&&$opEqualY(read,'L'))&&$opLesstY(input,pos))))) {
-        $line=105;
+      if (((((($bool(($opMembrY(input,Num)&&$opEqualY(read,'N')))||$bool(($opMembrY(input,Letr)&&$opEqualY(read,'L'))))||$bool(($opEqualY(input,'$')&&!$opEqualY(read,'L'))))||$bool(($opEqualY(read,'S')&&!$opEqualY(inputValue,times))))||$bool((($opLesstY(pos,7)&&$opEqualY(read,'N'))&&$opEqualY(input,start))))||$bool($opGreatY(times,pos)))) {
+        $line=104;
         $result=0;
         if (true) break $try;
       }
-      $line=108;
+      $line=106;
       if ($opEqualY(input,'$')) {
-        $line=108;
+        $line=106;
         $result=GCollections.asList(start,7,$opAdditY(times,$opSubtrY(7,pos)),'S');
         if (true) break $try;
       }
       else {
-        $line=109;
+        $line=107;
         if (($opEqualY(pos,7)&&$opEqualY(read,'N'))) {
-          $line=110;
+          $line=108;
           $result=GCollections.asList(input,0,0,'L');
           if (true) break $try;
         }
         else {
-          $line=111;
+          $line=109;
           if (($opLesstY(pos,7)&&$opEqualY(read,'L'))) {
-            $line=112;
+            $line=110;
             Object value=$fix($opSubtrY(inputValue,$opAdditY(pos,1)));
-            $line=113;
+            $line=111;
             $result=(($opGreaqY(value,0))?(GCollections.asList(start,$opAdditY(pos,value),$opAdditY(times,value),'N')):(0));
             if (true) break $try;
           }
           else {
-            $line=114;
+            $line=112;
             if (($opLesstY(pos,7)&&$opEqualY(read,'N'))) {
-              $line=115;
+              $line=113;
               $result=GCollections.asList(start,$opAdditY(pos,1),times,'L');
               if (true) break $try;
             }
             else {
-              $line=116;
+              $line=114;
               if ($opEqualY(read,'S')) {
-                $line=117;
+                $line=115;
                 $result=GCollections.asList("",7,0,'N');
                 if (true) break $try;
               }
               else {
-                $line=118;
+                $line=116;
                 $result=0;
                 if (true) break $try;
               }
@@ -401,7 +401,7 @@ public final class Proyect {
           }
         }
       }
-      $line=120;
+      $line=118;
       $rethrow(new RuntimeException("The function \"\u03B41(\u27E8start,pos,times,read\u27E9:java.lang.Iterable,input:Object)\" did not return a value."));
     }
     catch (Throwable $throwable) {
@@ -418,54 +418,78 @@ public final class Proyect {
       Object pos=$v26.next();
       Object times=$v26.next();
       Object read=$v26.next();
-      $line=123;
+      $line=121;
       Object Num=$fix($opIntvlY('0','7'));
-      $line=124;
+      $line=122;
       Object Letr=$fix($opIntvlY('a','z'));
-      $line=126;
+      $line=124;
       Object inputValue=$fix((($opMembrY(input,Num))?($invokeMethod(Character.class,"getNumericValue",true,null,new Object[]{input})):(input)));
-      $line=129;
+      $line=127;
       if (((((($bool(($opMembrY(input,Num)&&$opEqualY(read,'N')))||$bool(($opMembrY(input,Letr)&&$opEqualY(read,'L'))))||$bool(($opEqualY(input,'$')&&!$opEqualY(read,'L'))))||$bool(($opEqualY(read,'S')&&!$opEqualY(inputValue,times))))||$bool((($opLesstY(pos,7)&&$opEqualY(read,'N'))&&$opEqualY(input,start))))||$bool($opGreatY(times,pos)))) {
-        $line=135;
+        $line=133;
         $result="";
         if (true) break $try;
       }
-      $line=138;
+      $line=136;
       if (($opEqualY(pos,7)&&$opEqualY(read,'N'))) {
-        $line=138;
-        $result=input;
+        $line=136;
+        $result=$opAdditY($opAdditY("",input),"");
         if (true) break $try;
       }
       else {
-        $line=140;
+        $line=138;
         if (($opLesstY(pos,7)&&$opEqualY(read,'L'))) {
+          $line=139;
+          Object value=$fix((($opEqualY(inputValue,'$'))?($opSubtrY(7,pos)):($opSubtrY(inputValue,$opAdditY(pos,1)))));
           $line=140;
-          $result="";
+          Object str=$fix("");
+          $line=141;
+          while (true) {
+            if (!($opGreatY(value,0))) break;
+            $line=142;
+            str=$fix($opAdditY($opAdditY($opAdditY("",str),start),""));
+            $line=143;
+            value=$fix($opSubtrY(value,1));
+          }
+          $line=145;
+          $result=str;
           if (true) break $try;
         }
         else {
-          $line=143;
+          $line=147;
           if (($opLesstY(pos,7)&&$opEqualY(read,'N'))) {
-            $line=143;
-            $result=(($opEqualY(input,start))?(""):(input));
+            $line=147;
+            $result=(($opEqualY(input,start))?(""):($opAdditY($opAdditY("",input),"")));
             if (true) break $try;
           }
           else {
-            $line=146;
+            $line=149;
             if ($opEqualY(read,'S')) {
-              $line=146;
-              $result="";
+              $line=150;
+              Object value1=$fix((($opEqualY(inputValue,'$'))?($opSubtrY(7,pos)):($opSubtrY(inputValue,$opAdditY(pos,1)))));
+              $line=151;
+              Object str1=$fix("");
+              $line=152;
+              while (true) {
+                if (!($opGreatY(value1,0))) break;
+                $line=153;
+                str1=$fix($opAdditY($opAdditY($opAdditY("",str1),start),""));
+                $line=154;
+                value1=$fix($opSubtrY(value1,1));
+              }
+              $line=156;
+              $result=str1;
               if (true) break $try;
             }
             else {
-              $line=152;
+              $line=157;
               $result="";
               if (true) break $try;
             }
           }
         }
       }
-      $line=155;
+      $line=160;
       $rethrow(new RuntimeException("The function \"h1(\u27E8start,pos,times,read\u27E9:java.lang.Iterable,input:Object)\" did not return a value."));
     }
     catch (Throwable $throwable) {

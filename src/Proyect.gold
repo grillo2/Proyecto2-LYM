@@ -2,7 +2,7 @@ import gold.**
 // ------------------------------
 // Valeria Caro Ramirez				|
 // v.caro@uniandes.edu.co			|
-//							
+//202111040						|
 // ------------------------------
 // Sofia Velasquez Marin				|
 // s.velasquezm2@uniandes.edu.co	|
@@ -101,10 +101,8 @@ function δ1(⟨start,pos,times,read⟩,input) begin
 		(input = '$' and read ≠ 'L') or //Si estoy en $ y anteriormente no lei una letra
 		(read = 'S' and inputValue ≠ times) or // Si anteriormente lei el $ y el numero en el que estoy no es igual al numero de ocurrencias
 		(pos<7 and read = 'N' and input = start) or // Si anteriormente lei un numero, no he terminado de leer antes del $ y encuentro el mismo start symbol 
-		(times > pos) or (pos<7 and read = 'L' and input<pos)
-		then return 0 end
+		(times > pos) then return 0 end
 
-	
 	if input = '$' then return ⟨start,7,times+(7-pos),'S'⟩
 	elseif pos = 7 and read = 'N' then 
 		return ⟨input,0,0,'L'⟩
@@ -135,20 +133,27 @@ function h1 (⟨start,pos,times,read⟩,input) begin
 		then return "" end
 			
 	
-	if pos = 7 and read = 'N' then return input // Retorna la primera letra de cada bloque
+	if pos = 7 and read = 'N' then return ""+input+"" // Retorna la primera letra de cada bloque
 		
-	elseif pos < 7 and read = 'L' then return ""
-
-		
-	elseif pos < 7 and read = 'N' then return input = start ? "" : input
-		
-		
-	elseif read = 'S' then return ""
+	elseif pos < 7 and read = 'L' then 
+		value = inputValue = '$' ? (7-pos):(inputValue-(pos+1))
+		str = ""
+		while value > 0 do
+			str = ""+str+start+""
+			value = value - 1
+		end
+		return str
 	
-	
+	elseif pos < 7 and read = 'N' then return input = start ? "" : ""+input+""
 		
-	
-		
+	elseif read = 'S' then 
+		value1 = inputValue = '$' ? (7-pos):(inputValue-(pos+1))
+		str1 = ""
+		while value1 > 0 do
+			str1 = ""+str1+start+""
+			value1 = value1 - 1
+		end
+		return str1
 	else return ""
 		
 	end
