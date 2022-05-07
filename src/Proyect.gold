@@ -95,22 +95,26 @@ function δ1(⟨start,pos,times,read⟩,input) begin
 	inputValue := input ∈ Num ? Character.getNumericValue(input) : input
 	
 	//Errores posibles
+	
 	if (input ∈ Num and read = 'N') or //Si estoy en un numero y anteriormente lei un numero
 		(input ∈ Letr and read = 'L') or //Si estoy en una letra y anteriormente lei una letra
 		(input = '$' and read ≠ 'L') or //Si estoy en $ y anteriormente no lei una letra
 		(read = 'S' and inputValue ≠ times) or // Si anteriormente lei el $ y el numero en el que estoy no es igual al numero de ocurrencias
 		(pos<7 and read = 'N' and input = start) or // Si anteriormente lei un numero, no he terminado de leer antes del $ y encuentro el mismo start symbol 
-		(times > pos)
+		(times > pos) or (pos<7 and read = 'L' and input<pos)
 		then return 0 end
 
 	
 	if input = '$' then return ⟨start,7,times+(7-pos),'S'⟩
-	elseif pos = 7 and read = 'N' then return ⟨input,0,0,'L'⟩
+	elseif pos = 7 and read = 'N' then 
+		return ⟨input,0,0,'L'⟩
 	elseif pos<7 and read = 'L' then
 		value = inputValue-(pos+1) 
-		return  value > 0 ? ⟨start,pos+value,times + value,'N'⟩ : ⟨start,pos,times,'N'⟩
-	elseif pos<7 and read = 'N' then return ⟨start,pos+1,times,'L'⟩
-	elseif read = 'S' then return ⟨λ,7,0,'N'⟩
+		return  value ≥ 0 ? ⟨start,pos+value,times + value,'N'⟩ : 0
+	elseif pos<7 and read = 'N' then
+		return ⟨start,pos+1,times,'L'⟩
+	elseif read = 'S' then
+		return ⟨λ,7,0,'N'⟩
 	else return 0
 	end
 end
