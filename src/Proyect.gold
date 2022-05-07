@@ -1,12 +1,12 @@
 import gold.**
 // ------------------------------
-// Valeria Caro Ramirez				|
-// v.caro@uniandes.edu.co			|
-//202111040						|
+// sebastian Grillo			|
+// j.grillop@uniandes.edu.co			|
+//202116631						|
 // ------------------------------
-// Sofia Velasquez Marin				|
-// s.velasquezm2@uniandes.edu.co	|
-// 202113334						|						
+// 				|
+// 	|
+// 						|						
 // ------------------------------
 procedure main(args:String[]) begin
 	var sc: java.util.Scanner(System.$in)
